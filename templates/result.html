@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    searching for {{ query }}
+      <div class="row">
+                {% for t in business %}
+                               <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'business:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'business:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+  <div class="row">
+                {% for t in covid %}
+                             <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'covid:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'covid:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+  <div class="row">
+                {% for t in entertainment %}
+                               <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'entertainment:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'entertainment:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+  <div class="row">
+                {% for t in lifestyle %}
+                                <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'lifestyle:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'lifestyle:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+  <div class="row">
+                {% for t in itself %}
+                               <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'itself:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'itself:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+  <div class="row">
+                {% for t in sports %}
+                             <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'sports:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'sports:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+  <div class="row">
+                {% for t in tech %}
+                                <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'tech:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'tech:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+  <div class="row">
+                {% for t in trend %}
+                <div class="col-sm-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.headline %}
+                            <a href="{% url 'trending:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                            </div>
+                            <a href="{% url 'trending:single_news' t.slug %}" class="btn btn-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+
+{% endblock %}

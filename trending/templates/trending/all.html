@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'advertise/ad_home_top.html' %}
+
+<div class="col-md-9">
+
+    <section>
+        <div class="container">
+            <hr>
+
+            <div class="col-sm-12 child-div">
+
+                <div class="row row-cols-12 row-cols-md-4">
+                    {% for t in trending %}
+                    <a href="{% url 'trending:single_news' t.slug %}">
+                        <div class="col mb-12">
+                            <div class="card">
+
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="..." width="200px"
+                                     height="200px">
+                                <div class="card-body">
+                                   hi <h5 class="card-title">{{t.headline|truncatechars:35}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <hr>
+</div>
+
+            {% include 'advertise/ad_home_bottom.html' %}
+
+<br><br><br>
+<br><br><br>
+<hr>
+{% endblock %}

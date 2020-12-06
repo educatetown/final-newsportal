@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load nepalidatetime %}
+{% block content %}
+
+{% include 'singlead/singletop.html' %}
+
+<section id="single">
+    <div class="container-fluid single">
+        <di class="row">
+            <div class="col-md-9">
+                <h1 >{{news.headline}}</h1>
+                <div class="row">
+                    {% if news.reporter %}
+                    <div class="col-md-3">
+                        <p><i class="fa fa-pencil" aria-hidden="true"></i><span >{{news.reporter}}</span></p>
+                    </div>
+                    {% endif %}
+                    {% if news.published_at %}
+                    <div class="col-md-6">
+
+            {{x}}  मा प्रकाशित
+
+                    </div>
+                    {% endif %}
+                    {% if news.event_place %}
+                    <div class="col-md-3">
+                            <i class="fa fa-map-marker"></i><span>{{news.event_place}}</span></i>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <img src="{{ news.thumbnail.url }}" width="100%" height="600px">
+
+                <div class="jumbotron">
+                   <dl>
+                <p>    {{news.description|safe|linebreaksbr}}</p>
+
+  <!-- Other terms and descriptions -->
+</dl>
+        {%if news.picture1 %}
+            <img src="{{ news.picture1.url }}" width="100%" height="300px" class="img-responsive">
+            <br>
+            <br>
+        {% endif %}
+        {%if news.picture2 %}
+            <img src="{{ news.picture2.url }}" width="100%" height="300px" class="img-responsive">
+        <br><br>
+            {% endif %}
+        {%if news.picture3 %}
+            <img src="{{ news.picture3.url }}" width="100%" height="300px" class="img-responsive">
+        {% endif %}
+
+        </div>
+    </div>
+               <div class="col-md-3">
+            {% include 'singlead/singleright.html' %}
+        </div>
+    </div>
+    {% include 'singlead/singlebottom.html' %}
+
+</section>
+
+            <div class="row">
+                {% for t in all_news %}
+                <div class="col-sm-3">
+                    <div class="card-deck">
+                        <div class="card">
+                            {% if t.thumbnail %}
+                            <a href="{% url 'newsportalapp:single_news' t.slug %}">
+                                <img src="{{t.thumbnail.url}}" class="card-img-top" alt="..." height="200px">
+                            </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <a href="{% url 'newsportalapp:single_news' t.slug %}">
+                                <h5 class="card-title">{{t.headline}}</h5>
+                                                         </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+{% endblock %}

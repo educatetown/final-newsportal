@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    {% include 'snippets/meta.html' %}
+    <link rel="shortcut icon" href="{% static 'images/s.ico' %}"/>
+    <title>{% block title_content %} शुभप्रभात खबर{% endblock %}</title>
+    {% include 'snippets/css.html' %}
+</head>
+
+<body>
+
+    {% include 'snippets/header.html' %}
+
+    {% include 'snippets/nav.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+{% include 'snippets/footer_stack.html' %}
+{% include 'snippets/footer.html' %}
+{% include 'snippets/js.html' %}
+</body>
+
+</html>

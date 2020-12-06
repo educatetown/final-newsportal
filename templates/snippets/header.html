@@ -1,0 +1,33 @@
+<!--{% load static %}-->
+<!--{% load nepalidatetime %}-->
+<!--<div class="header">-->
+<!--        <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-">-->
+<!--                <img src="{% static 'images/spk_icon.jpg' %}" class="img-responsive">-->
+<!--            </div>-->
+<!--            <div class="col-">-->
+<!--                <h3>{% nepalinow %}</h3>-->
+<!--                <h3>{{now|time}}</h3>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--</div>-->
+
+{% load static %}
+{% load nepalidatetime %}
+<div class="header">
+
+<div class="container">
+  <div class="row">
+    <div class="col fill">
+                        <img src="{% static 'images/spk_icon.jpg' %}" class="img-responsive">
+
+    </div>
+    <div class="col">
+     <h3>{% nepalinow %}</h3>
+                <h3>{{now|time}}</h3>
+    </div>
+  </div>
+</div>
+</div>

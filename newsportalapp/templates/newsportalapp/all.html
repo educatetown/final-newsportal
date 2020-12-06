@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'advertise/ad_home_top.html' %}
+
+<div class="col-sm-12 first-heading">
+
+                    {% for n in news|slice:":1" %}
+                    <a href="{% url 'newsportalapp:single_news' n.slug %}">
+                                    <h1 class="card-title" align="center">{{n.headline|truncatechars:55}}</h1>
+                    </a>
+                            <img src="{{n.thumbnail.url}}" class="d-block w-100" alt="..." width="80%" height="300px">
+
+                    {% endfor %}
+            </div>
+<br><br>
+
+<div class="container-fluid home-slideshow">
+    <div class="row">
+        <div class="col-sm-8">
+
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner">
+                    {% for n in news|slice:"1:" %}
+
+                        {% if forloop.counter == 1 %}
+
+                        <div class="carousel-item active">
+                            {% else %}
+                            <div class="carousel-item">
+                                {% endif %}
+                                <img src="{{n.thumbnail.url}}" class="d-block w-100" alt="..." width="100%" height="500px">
+                                <div class="carousel-caption">
+                                    <a href="{% url 'newsportalapp:single_news' n.slug %}">
+
+                                        <h3>{{n.headline}}</h3>
+                                    </a>
+                                    <p>{{n.published_at|timesince}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-4 child-div">
+
+                <div class="row row-cols-2 row-cols-md-2">
+                    {% for n in news|slice:"2:6" %}
+                    <a href="{% url 'newsportalapp:single_news' n.slug %}">
+                        <div class="col mb-12 p-1">
+                            <div class="card border border-info">
+                                <img src="{{n.thumbnail.url}}" class="card-img-top" alt="..." height="100px">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{n.headline|truncatechars:55}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<hr>
+<div class="tn">
+    {% for n in trending_news|slice:":1" %}
+    <div class="card bg-dark text-white">
+        {% if n.thumbnail %}
+        <img src="{{n.thumbnail.url}}" class="card-img" alt="..." height="600px">
+        <div class="card-img-overlay">
+            <a href="{% url 'newsportalapp:single_news' n.slug %}">
+                <h2 class="card-title">{{n.headline}}</h2>
+            </a>
+            <p class="card-text">{{n.description|truncatechars:400}}</p>
+            <p class="card-text">publihsed before: <b>{{n.published_at|timesince }}</b></p>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+    <div class="conatiner-fluid">
+        <div class="row">
+          <div class="col-md-9">
+
+            <!--Covid Section -->
+            <section id="covid">
+                 <div class="alert alert-success" role="alert">
+                    <h2> <a href="#}">कोरोना भाइरस </a></h2>
+                    </div>
+                {% for cn in covid_news|slice:":4" %}
+                <div class="row">
+                    {% for b in covid_news %}
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <a href="{% url 'covid:single_news' b.slug %}">
+                                <img src="{{b.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ b.headline }}</h5>
+                                <p class="card-text">{{ b.description|truncatewords:10 }}</p>
+                                <a href="{% url 'covid:single_news' b.slug %}" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    {% cycle "" "" "</div><hr/><div class='row'>" %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </section>
+            <!--News ends-->
+
+            {% include 'advertise/ad_home_middle.html' %}
+            <!--business Section -->
+            <section id="business">
+                <div class="alert alert-success" role="alert">
+                    <h2> <a href="#}">विजनेश</a></h2>
+                    </div>
+                <div class="row">
+                    {% for b in business_news|slice:":4" %}
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <a href="{% url 'business:single_news' b.slug %}">
+                                <img src="{{b.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ b.headline }}</h5>
+                                <p class="card-text">{{ b.description|truncatewords:10 }}</p>
+                                <a href="{% url 'business:single_news' b.slug %}" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    {% cycle "" "" "</div><hr/><div class='row'>" %}
+                    {% endfor %}
+                </div>
+            </section>
+            <!--business ends-->
+
+
+            <!--tech Section -->
+            <section id="tech">
+                                <div class="alert alert-success" role="alert">
+                    <h2> <a href="#}">सूचना प्रविधि</a></h2>
+                    </div>
+
+                <div class="row">
+                    {% for b in tech_news|slice:":4" %}
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <a href="{% url 'tech:single_news' b.slug %}">
+                                <img src="{{b.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ b.headline }}</h5>
+                                <p class="card-text">{{ b.description|truncatewords:10 }}</p>
+                                <a href="{% url 'tech:single_news' b.slug %}" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    {% cycle "" "" "</div><hr/><div class='row'>" %}
+                    {% endfor %}
+                </div>
+            </section>
+            <!--tech ends-->
+
+
+            <!--entertainment Section -->
+            <section id="entertainment">
+                                <div class="alert alert-success" role="alert">
+                    <h2> <a href="#}">मनोरन्जन</a></h2>
+                    </div>
+
+                <div class="row">
+                    {% for b in entertainment_news|slice:":4" %}
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <a href="{% url 'entertainment:single_news' b.slug %}">
+                                <img src="{{b.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ b.headline }}</h5>
+                                <p class="card-text">{{ b.description|truncatewords:10 }}</p>
+                                <a href="{% url 'entertainment:single_news' b.slug %}" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    {% cycle "" "" "</div><hr/><div class='row'>" %}
+                    {% endfor %}
+                </div>
+            </section>
+            <!--News ends-->
+
+
+            <!--sports Section -->
+            <section id="sports">
+                                <div class="alert alert-success" role="alert">
+                    <h2> <a href="#}">खेलकुद</a></h2>
+                    </div>
+
+                <div class="row">
+                    {% for b in sports_news|slice:":4" %}
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <a href="{% url 'sports:single_news' b.slug %}">
+                                <img src="{{b.thumbnail.url}}" class="card-img-top" alt="...">
+                            </a>
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ b.headline }}</h5>
+                                <p class="card-text">{{ b.description|truncatewords:10 }}</p>
+                                <a href="{% url 'sports:single_news' b.slug %}" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    {% cycle "" "" "</div><hr/><div class='row'>" %}
+                    {% endfor %}
+                </div>
+            </section>
+            <!--News ends-->
+
+          </div>
+            <div class="col-md-3">
+            {% include 'advertise/ad_home_right.html' %}
+        </div>
+        </div>
+    </div>
+            {% include 'advertise/ad_home_bottom.html' %}
+{% endblock %}
+

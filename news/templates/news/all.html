@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- samachar -->
+{% include 'advertise/ad_home_top.html' %}
+
+<section id="team">
+    <div class="content-box-lg">
+        <div class="container">
+            <!-- Team Members-->
+            <div class="alert alert-success" role="alert">
+              <h2 class="alert-heading"> <a href="{% url 'news:all' %}">
+                   समाचार
+               </a></h2>
+            </div>
+
+            <div class="row">
+                <!--- Team Right side-->
+                <div class="col-md-12 col-sm-12 slideInRight" data-wow-duration="1s">
+                    <div id="team-members" class="owl-carousel owl-theme">
+                        <!-- Member 01-->
+                        {% for np in news_portal %}
+
+                        <div class="team-member">
+
+                            <img src="{{ np.thumbnail.url }}" alt="team member" class="img-responsive" width="100%"
+                                 height="250px">
+                            <div class="team-member-overlay">
+                                <div class="team-member-info text-center">
+                                    <a href="{% url 'newsportalapp:single_news'  np.slug%}">
+                                        <h6>{{np.headline|truncatechars:50}}</h6>
+                                        <p>{{np.published_at|timesince}}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+<br>
+    <hr>
+
+
+            <div class="col-sm-12 child-div">
+
+                <div class="row row-cols-12 row-cols-md-4">
+                    {% for n in news_portal|slice:"3:" %}
+                    <a href="{% url 'newsportalapp:single_news' n.slug %}">
+                        <div class="col mb-12">
+                            <div class="card">
+                                <img src="{{n.thumbnail.url}}" class="card-img-top" alt="..." width="200px" height="200px">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{n.headline|truncatechars:35}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+</section>
+</div>
+
+ {% include 'advertise/ad_home_bottom.html' %}
+
+{% endblock %}
